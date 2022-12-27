@@ -13,3 +13,28 @@ export const repairAdded = (var1,va2) => {
 }
 
 */
+
+export const repairAdded = payload => ({
+  type: 'repairAdded',
+  payload
+});
+
+export const repairRemoved = payload => ({
+  type: 'repairRemoved',
+  payload
+});
+
+export const repairResolved = payload => ({
+  type: 'repairResolved',
+  payload
+});
+
+export const repairUpdated = payload => ({
+  type: 'repairUpdated',
+  payload
+});
+
+export const editTask = payload => ({
+  type: 'editTask',
+  payload
+});
