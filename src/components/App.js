@@ -50,6 +50,9 @@ const App = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
+          if((owner=='' ||model=='' || description=='')){
+            return
+          }
 
           console.log(editMode);
           if(editMode){
