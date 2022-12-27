@@ -12,6 +12,7 @@ const App = () => {
   const [model, setModel] = useState('');
   const [description, setDescription] = useState('');
   const items = useSelector(state => state.bicycle.items);
+  const { editMode } = useSelector(state => state.bicycle);
   const dispatch = useDispatch();
 
   const handleAddRepair = repair => {
@@ -40,7 +41,19 @@ const App = () => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          handleAddRepair({ owner, model, description });
+
+
+          if(editMode){
+            handleUpdateRepair({ owner, model, description });
+
+          }else{
+
+            handleAddRepair({ owner, model, description });
+          }
+
+
+
+
           setOwner('');
           setModel('');
           setDescription('');
