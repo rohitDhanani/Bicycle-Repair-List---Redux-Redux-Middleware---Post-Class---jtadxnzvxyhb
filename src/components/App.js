@@ -8,30 +8,39 @@ const App = () => {
   // return (
   //   <div id="main"></div>
   // )
+  const [itemId, setItemId] = useState(0);
   const [owner, setOwner] = useState('');
   const [model, setModel] = useState('');
   const [description, setDescription] = useState('');
-  const items = useSelector(state => state.bicycle.items);
-  const { editMode } = useSelector(state => state.bicycle);
+  const items = useSelector(state => {{
+    // console.log(state);
+   return state.bicycle.items}});
+  const { editMode,item } = useSelector(state => state.bicycle);
   const dispatch = useDispatch();
 
   const handleAddRepair = repair => {
     dispatch(repairAdded(repair));
   };
-
+  
   const handleRemoveRepair = id => {
     dispatch(repairRemoved({ id }));
   };
-
+  
   const handleResolveRepair = id => {
     dispatch(repairResolved({ id }));
   };
-
+  
   const handleUpdateRepair = repair => {
-    dispatch(repairUpdated(repair));
+    // console.log(item);
+    dispatch(repairUpdated({...repair,id:itemId}));
   };
 
   const handleEditRepair = item => {
+    // console.log(item.id);
+    setItemId(item.id);
+    setOwner(item.owner);
+            setModel(item.model);
+            setDescription(item.description);
     dispatch(editTask(item));
   };
 
@@ -42,21 +51,22 @@ const App = () => {
         onSubmit={e => {
           e.preventDefault();
 
-
+          console.log(editMode);
           if(editMode){
             handleUpdateRepair({ owner, model, description });
+            
 
           }else{
 
             handleAddRepair({ owner, model, description });
           }
-
-
-
-
+          
           setOwner('');
           setModel('');
           setDescription('');
+
+
+
         }}
       >
         <label htmlFor="owner-text-box">Owner:</label>
