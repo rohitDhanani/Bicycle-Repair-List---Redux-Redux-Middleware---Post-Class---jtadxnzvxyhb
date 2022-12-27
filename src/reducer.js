@@ -76,7 +76,8 @@ const bicycleReducer=(state=initialState,action)=>{
                   description: action.payload.description
                 }
               : item
-          )
+          ),
+          editMode: false
         };
       
       break;
